@@ -314,12 +314,7 @@ class FileSystemSessionInterface(SessionInterface):
 
     def __init__(self, cache_dir, threshold, mode, key_prefix,
                  use_signer=False, permanent=True):
-        ### This is not available in Werkzeug 1+ :
-        ##from werkzeug.contrib.cache import FileSystemCache
-        ### This does not work either :
-        ##from cachelib.file import FileSystemCache
-        ### So let's use flask_caching backend :
-        from flask_caching.backends.filesystem import FileSystemCache
+        from cachelib.file import FileSystemCache
         self.cache = FileSystemCache(cache_dir, threshold=threshold, mode=mode)
         self.key_prefix = key_prefix
         self.use_signer = use_signer
